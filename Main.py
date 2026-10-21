@@ -1,5 +1,6 @@
 # imports
 # Data imports
+import os
 import pandas as pd
 import numpy as np
 
@@ -20,7 +21,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Data Frame
-data = pd.read_csv("C:/Users/paddi/OneDrive/Desktop/HTML/Titanic_Data.csv")
+# Kaggle's labelled training set (891 passengers), read from the folder this script is in
+data = pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "Titanic_Data.csv"))
 data.info()  # says what type of data im working with
 print(data.isnull().sum())  # see how many missing values there are
 
@@ -115,7 +117,7 @@ print(matrix)
 # plot
 def plot_model(matrix):
     plt.figure(figsize = (10, 7))
-    sns.heatmap(matrix, annot=True, fmt="d", xticklabels=["Survived", "Not Survived"], yticklabels=["Not Survived", "Survived"])
+    sns.heatmap(matrix, annot=True, fmt="d", xticklabels=["Not Survived", "Survived"], yticklabels=["Not Survived", "Survived"])
     plt.title("Confusion matrix")
     plt.xlabel("Predicted Value")
     plt.ylabel("Actual Value")
